@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Countdown Timer</title>
+</head>
+<body>
+    <h1>Countdown Timer</h1>
+    <p id="timer"></p>
+
+    <script>
+        
+        const countdownDate = new Date("2023-12-31 23:59:59").getTime();
+
+    
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+           
+            const timerElement = document.getElementById("timer");
+            timerElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+           
+            if (distance < 0) {
+                clearInterval(timer);
+                timerElement.innerHTML = "Countdown expired!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
